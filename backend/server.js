@@ -11,10 +11,18 @@ const connectDB = require('./config/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const CLIENT_ORIGINS = (process.env.CLIENT_ORIGINS || '')
+const DEFAULT_CLIENT_ORIGINS = [
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'https://kanhaiyaji.github.io'
+];
+const CLIENT_ORIGINS = Array.from(new Set([
+  ...DEFAULT_CLIENT_ORIGINS,
+  ...(process.env.CLIENT_ORIGINS || '')
   .split(',')
   .map((origin) => origin.trim())
-  .filter(Boolean);
+  .filter(Boolean)
+]));
 
 // Middleware
 app.use(express.json());
@@ -23,9 +31,7 @@ app.use(express.json());
 app.use((req, res, next) => {
   const requestOrigin = req.headers.origin;
 
-  if (CLIENT_ORIGINS.length === 0) {
-    res.header('Access-Control-Allow-Origin', '*');
-  } else if (requestOrigin && CLIENT_ORIGINS.includes(requestOrigin)) {
+  if (requestOrigin && CLIENT_ORIGINS.includes(requestOrigin)) {
     res.header('Access-Control-Allow-Origin', requestOrigin);
     res.header('Vary', 'Origin');
   }
