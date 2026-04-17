@@ -10,6 +10,7 @@ const adminLoginForm = document.getElementById('adminLoginForm');
 const adminStatusForm = document.getElementById('adminStatusForm');
 const refreshAdminBtn = document.getElementById('refreshAdminBtn');
 const logoutAdminBtn = document.getElementById('logoutAdminBtn');
+const apiHealthLinkAdmin = document.getElementById('apiHealthLinkAdmin');
 
 function setMessage(targetId, text, type) {
   const target = document.getElementById(targetId);
@@ -125,6 +126,13 @@ logoutAdminBtn.addEventListener('click', () => {
   sessionStorage.removeItem(ADMIN_AUTH_KEY);
   window.location.reload();
 });
+
+if (apiHealthLinkAdmin) {
+  apiHealthLinkAdmin.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.open('https://laundry-system-x7t5.onrender.com/health', '_blank', 'noopener,noreferrer');
+  });
+}
 
 if (isAuthenticated()) {
   showAdminArea();

@@ -5,6 +5,7 @@ const garmentTemplate = document.getElementById('garmentTemplate');
 const createOrderForm = document.getElementById('createOrderForm');
 const trackOrderForm = document.getElementById('trackOrderForm');
 const addGarmentBtn = document.getElementById('addGarmentBtn');
+const apiHealthLinkUser = document.getElementById('apiHealthLinkUser');
 
 function setMessage(targetId, text, type) {
   const target = document.getElementById(targetId);
@@ -127,6 +128,13 @@ trackOrderForm.addEventListener('submit', async (event) => {
 });
 
 addGarmentBtn.addEventListener('click', addGarmentRow);
+
+if (apiHealthLinkUser) {
+  apiHealthLinkUser.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.open('https://laundry-system-x7t5.onrender.com/health', '_blank', 'noopener,noreferrer');
+  });
+}
 
 // Initialize with one empty garment row on page load
 addGarmentRow();
