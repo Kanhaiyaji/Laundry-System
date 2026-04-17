@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laundry Admin</title>
+  <link rel="stylesheet" href="./ui.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Admin Portal</p>
+        <h1>Administration Access</h1>
+        <p class="subtitle">Login from /admin to manage orders, update status, and review dashboard stats.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button button-secondary" href="/">Back to User Portal</a>
+        <a class="button button-primary" href="http://localhost:3000/health" target="_blank" rel="noreferrer">API Health</a>
+      </div>
+    </header>
+
+    <main class="layout layout-one-column">
+      <section class="panel panel-wide login-card" id="loginPanel">
+        <div class="panel-header">
+          <h2>Admin Login</h2>
+          <span class="badge">/admin</span>
+        </div>
+        <form id="adminLoginForm" class="form-grid admin-login-grid">
+          <label>
+            Username
+            <input type="text" id="adminUsername" placeholder="admin" required />
+          </label>
+          <label>
+            Password
+            <input type="password" id="adminPassword" placeholder="admin123" required />
+          </label>
+          <div class="full-width login-actions">
+            <button type="submit" class="button button-primary">Login</button>
+          </div>
+        </form>
+        <div id="adminLoginMessage" class="message-slot"></div>
+      </section>
+
+      <section class="panel panel-wide hidden" id="adminShell">
+        <div class="panel-header">
+          <h2>Admin Dashboard</h2>
+          <div class="hero-actions">
+            <button id="refreshAdminBtn" class="button button-secondary" type="button">Refresh</button>
+            <button id="logoutAdminBtn" class="button button-danger" type="button">Logout</button>
+          </div>
+        </div>
+        <div id="dashboardStats" class="stats-grid"></div>
+        <div class="panel-subheader">
+          <h3>Orders</h3>
+        </div>
+        <div id="dashboardOrders" class="cards-grid"></div>
+      </section>
+
+      <section class="panel panel-wide hidden" id="statusPanel">
+        <div class="panel-header">
+          <h2>Update Order Status</h2>
+          <span class="badge badge-muted">PUT /api/orders/:orderId</span>
+        </div>
+        <form id="adminStatusForm" class="track-grid">
+          <label>
+            Order ID
+            <input type="text" id="adminOrderId" placeholder="ORD-1001" required />
+          </label>
+          <label>
+            Status
+            <select id="adminStatus" required>
+              <option value="">Select status</option>
+              <option value="RECEIVED">RECEIVED</option>
+              <option value="PROCESSING">PROCESSING</option>
+              <option value="READY">READY</option>
+              <option value="DELIVERED">DELIVERED</option>
+            </select>
+          </label>
+          <button type="submit" class="button button-warning">Update Status</button>
+        </form>
+        <div id="adminStatusMessage" class="message-slot"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./config.js"></script>
+  <script src="./admin.js"></script>
+</body>
+</html>

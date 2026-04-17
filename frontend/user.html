@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laundry Orders - User</title>
+  <link rel="stylesheet" href="./ui.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Customer Portal</p>
+        <h1>Laundry Order Management</h1>
+        <p class="subtitle">Create an order, then track it with your order ID. Admin management lives behind a separate login.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button button-secondary" href="http://localhost:3000/health" target="_blank" rel="noreferrer">API Health</a>
+        <a class="button button-primary" href="/admin">Admin Login</a>
+      </div>
+    </header>
+
+    <main class="layout layout-one-column">
+      <section class="panel panel-wide">
+        <div class="panel-header">
+          <h2>Create Order</h2>
+          <span class="badge">POST /api/orders</span>
+        </div>
+        <form id="createOrderForm" class="form-grid">
+          <label>
+            Customer Name
+            <input type="text" id="customerName" placeholder="Enter customer name" required />
+          </label>
+          <label>
+            Phone Number
+            <input type="text" id="phoneNumber" placeholder="555-123-4567" required />
+          </label>
+          <label>
+            Delivery Address
+            <textarea id="address" placeholder="Enter your delivery address with flat/house number, street, area, city, pincode" required></textarea>
+          </label>
+          <div class="full-width">
+            <div class="section-row">
+              <h3>Garments</h3>
+              <button type="button" class="button button-secondary" id="addGarmentBtn">Add Garment</button>
+            </div>
+            <div id="garmentsList"></div>
+          </div>
+          <div class="full-width">
+            <button type="submit" class="button button-primary full-button">Create Order</button>
+          </div>
+        </form>
+        <div id="createOrderMessage" class="message-slot"></div>
+      </section>
+
+      <section class="panel panel-wide">
+        <div class="panel-header">
+          <h2>Track Order</h2>
+          <span class="badge badge-muted">GET /api/orders/:orderId</span>
+        </div>
+        <form id="trackOrderForm" class="track-grid">
+          <label>
+            Order ID
+            <input type="text" id="trackOrderId" placeholder="ORD-1001" required />
+          </label>
+          <button type="submit" class="button button-warning">Track Status</button>
+        </form>
+        <div id="trackOrderMessage" class="message-slot"></div>
+        <div id="trackedOrderResult" class="cards-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <template id="garmentTemplate">
+    <div class="garment-row">
+      <input type="text" class="garment-type" placeholder="Garment type" required />
+      <input type="number" class="garment-quantity" placeholder="Qty" min="1" step="1" required />
+      <input type="number" class="garment-price" placeholder="Price" min="0" step="0.01" required />
+      <button type="button" class="button button-danger garment-remove">Remove</button>
+    </div>
+  </template>
+
+  <script src="./config.js"></script>
+  <script src="./user.js"></script>
+</body>
+</html>
