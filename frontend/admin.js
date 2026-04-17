@@ -1,4 +1,4 @@
-const API_URL = window.APP_CONFIG?.API_URL || 'http://localhost:3000';
+const API_URL = window.APP_CONFIG?.API_URL || 'https://laundry-system-x7t5.onrender.com';
 const ADMIN_AUTH_KEY = 'laundry-admin-auth';
 const ADMIN_USERNAME = 'admin';
 const ADMIN_PASSWORD = 'admin123';

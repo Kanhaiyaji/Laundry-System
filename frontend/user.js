@@ -1,4 +1,4 @@
-const API_URL = window.APP_CONFIG?.API_URL || 'http://localhost:3000';
+const API_URL = window.APP_CONFIG?.API_URL || 'https://laundry-system-x7t5.onrender.com';
 
 const garmentsList = document.getElementById('garmentsList');
 const garmentTemplate = document.getElementById('garmentTemplate');
