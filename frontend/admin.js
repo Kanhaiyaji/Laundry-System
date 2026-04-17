@@ -11,6 +11,11 @@ const adminStatusForm = document.getElementById('adminStatusForm');
 const refreshAdminBtn = document.getElementById('refreshAdminBtn');
 const logoutAdminBtn = document.getElementById('logoutAdminBtn');
 const apiHealthLinkAdmin = document.getElementById('apiHealthLinkAdmin');
+const forceLogin = new URLSearchParams(window.location.search).get('forceLogin') === '1';
+
+if (forceLogin) {
+  sessionStorage.removeItem(ADMIN_AUTH_KEY);
+}
 
 function setMessage(targetId, text, type) {
   const target = document.getElementById(targetId);
